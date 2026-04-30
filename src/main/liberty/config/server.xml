@@ -1,0 +1,15 @@
+<server description="DailySpane Jakarta EE 11">
+
+    <featureManager>
+        <feature>restfulWS-3.1</feature>
+        <feature>cdi-4.0</feature>
+        <feature>jsonb-3.0</feature>
+    </featureManager>
+
+    <httpEndpoint id="defaultHttpEndpoint"
+                  host="0.0.0.0"
+                  httpPort="9080" />
+
+    <webApplication location="dailyspane.war" contextRoot="/" />
+
+</server>
