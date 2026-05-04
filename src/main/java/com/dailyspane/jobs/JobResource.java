@@ -1,6 +1,7 @@
 package com.dailyspane.jobs;
 
 import jakarta.inject.Inject;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -16,13 +17,19 @@ public class JobResource {
     JobService jobService;
 
     @GET
-    public List<JobPost> getAllJobs() {
-        return jobService.findAll();
+    public List<JobResponse> getAllJobs() {
+        return jobService.findAll()
+                .stream()
+                .map(JobResponse::from)
+                .toList();
     }
 
     @POST
-    public Response createJob(JobPost job) {
-        JobPost created = jobService.create(job);
-        return Response.status(Response.Status.CREATED).entity(created).build();
+    public Response createJob(@Valid CreateJobRequest request) {
+        JobPost created = jobService.create(request);
+
+        return Response.status(Response.Status.CREATED)
+                .entity(JobResponse.from(created))
+                .build();
     }
 }

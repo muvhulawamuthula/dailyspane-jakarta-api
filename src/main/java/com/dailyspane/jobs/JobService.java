@@ -16,8 +16,14 @@ public class JobService {
         return jobs;
     }
 
-    public JobPost create(JobPost job) {
+    public JobPost create(CreateJobRequest request) {
+        JobPost job = new JobPost();
         job.setId(idGenerator.incrementAndGet());
+        job.setTitle(request.getTitle());
+        job.setLocation(request.getLocation());
+        job.setPay(request.getPay());
+        job.setDescription(request.getDescription());
+
         jobs.add(job);
         return job;
     }
