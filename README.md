@@ -68,3 +68,7 @@ src/main/liberty/config/server.xml
 - Bean Validation on job posts
 - Job lookup, update and delete endpoints
 - Tests
+
+## License
+
+MIT. See [LICENSE](LICENSE).
